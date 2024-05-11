@@ -1,0 +1,17 @@
+services:
+  jellyfin:
+    container_name: jellyfin
+    image: linuxserver/jellyfin:latest
+    ports:
+      - 8096:8096/tcp # Web UI
+      - 7359:7359/udp # Auto-discovery
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TIMEZONE}
+      - UMASK=022
+      - JELLYFIN_PublishedServerUrl=JELLYFIN_HOSTNAME
+    volumes:
+    - ${PATH_CONFIG}/jellyfin:/config
+    - ${PATH_DATA}:/data/media
+    restart: always

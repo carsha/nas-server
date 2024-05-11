@@ -1,0 +1,26 @@
+services:
+  vpn:
+    container_name: vpn
+    image: qmcgaw/gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    ports:
+      - 8000:80
+      - 7878:7878 # Radarr
+      - 8080:8080 # qBittorrent
+      - 8191:8191 # Flaresolverr
+      - 8989:8989 # Sonarr
+      - 9696:9696 # Prowlarr
+    environment:
+      - TZ=${TIMEZONE}
+      - VPN_SERVICE_PROVIDER=mullvad
+      - VPN_TYPE=wireguard
+      - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
+      - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
+      - SERVER_CITIES=${MULLVAD_SERVER_CITIES}
+      - FIREWALL_OUTBOUND_SUBNETS=${FIREWALL_OUTBOUND_SUBNETS}
+    restart: always
+    healthcheck:
+      test: wget -O - https://am.i.mullvad.net/connected | grep -q "You are connected"

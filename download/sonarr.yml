@@ -1,0 +1,13 @@
+services:
+  sonarr:
+    container_name: sonarr
+    image: linuxserver/sonarr:latest
+    network_mode: service:vpn
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TIMEZONE}
+    volumes:
+    - ${PATH_CONFIG}/sonarr:/config
+    - ${PATH_DATA}:/data
+    restart: unless-stopped

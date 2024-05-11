@@ -1,0 +1,11 @@
+include:
+  # Core services
+  - core/gluetun.yml
+  - core/jellyfin.yml
+  - core/jellyseerr.yml
+  # Download services
+  - download/flaresolverr.yml
+  - download/prowlarr.yml
+  - download/qbittorrent.yml
+  - download/radarr.yml
+  - download/sonarr.yml

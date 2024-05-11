@@ -1,0 +1,12 @@
+services:
+  prowlarr:
+    container_name: prowlarr
+    image: linuxserver/prowlarr:latest
+    network_mode: service:vpn
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TIMEZONE}
+    volumes:
+    - ${PATH_CONFIG}/prowlarr:/config
+    restart: unless-stopped

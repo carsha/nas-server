@@ -1,0 +1,14 @@
+services:
+  torrent:
+    container_name: torrent
+    image: linuxserver/qbittorrent:latest
+    network_mode: service:vpn
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TIMEZONE}
+      - WEBUI_PORT=8080
+    volumes:
+    - ${PATH_CONFIG}/qbittorrent:/config
+    - ${PATH_DATA}:/downloads
+    restart: unless-stopped

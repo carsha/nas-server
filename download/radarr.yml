@@ -1,0 +1,13 @@
+services:
+  radarr:
+    container_name: radarr
+    image: linuxserver/radarr:latest
+    network_mode: service:vpn
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TIMEZONE}
+    volumes:
+    - ${PATH_CONFIG}/radarr:/config
+    - ${PATH_DATA}:/data
+    restart: unless-stopped

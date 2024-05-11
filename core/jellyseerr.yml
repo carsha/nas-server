@@ -1,0 +1,14 @@
+services:
+  jellyseerr:
+    container_name: jellyseerr
+    image: fallenbagel/jellyseerr:latest
+    ports:
+      - 5055:5055/tcp
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TIMEZONE}
+    user: ${PUID}:${PGID}
+    volumes:
+    - ${PATH_CONFIG}/jellyseerr:/app/config
+    restart: always
