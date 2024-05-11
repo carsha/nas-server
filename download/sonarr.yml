@@ -9,5 +9,6 @@ services:
       - TZ=${TIMEZONE}
     volumes:
     - ${PATH_CONFIG}/sonarr:/config
-    - ${PATH_DATA}:/data
+    - ${PATH_DATA}/tv:/data
+    - ${PATH_DOWNLOAD}:/downloads
     restart: unless-stopped

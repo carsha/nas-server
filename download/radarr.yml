@@ -9,5 +9,6 @@ services:
       - TZ=${TIMEZONE}
     volumes:
     - ${PATH_CONFIG}/radarr:/config
-    - ${PATH_DATA}:/data
+    - ${PATH_DATA}/movie:/data
+    - ${PATH_DOWNLOAD}:/downloads
     restart: unless-stopped
